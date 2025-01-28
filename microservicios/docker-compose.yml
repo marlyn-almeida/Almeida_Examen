@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: almeida_examen
+    environment:
+      MYSQL_ROOT_PASSWORD: abcd
+      MYSQL_DATABASE: sisdb_examen
+    ports:
+      - "3308:3306"  # Puertos: El 3308 en el host mapea el 3306 en el contenedor
+    volumes:
+      - mysql-data:/var/lib/mysql  # Persistencia de datos
+    networks:
+      - mysql_network  # Red definida para la comunicación entre contenedores
+
+volumes:
+  mysql-data:  # Define el volumen para persistir datos de la base de datos
+
+networks:
+  mysql_network:
+    driver: bridge  # Utiliza una red tipo 'bridge'
